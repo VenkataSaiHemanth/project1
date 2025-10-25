@@ -1,0 +1,11 @@
+groups:
+  - name: nodejs-app-alerts
+    rules:
+      - alert: NodeAppDown
+        expr: up{job="nodejs-app"} == 0
+        for: 1m
+        labels:
+          severity: "critical"
+        annotations:
+          summary: "Node.js application is down"
+          description: "The Node.js application (job: nodejs-app) has been down for more than 1 minute."
